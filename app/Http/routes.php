@@ -11,6 +11,9 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
-});
+/*$app->get('/', function () use ($app) {
+    return  'Hi';
+});*/
+
+$app->get('/', 'AppController@application');
+$app->get('{all}', 'AppController@application');
