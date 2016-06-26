@@ -2,3 +2,4 @@
 .env
 /.vagrant
 .DS_Store
+/bower_components
