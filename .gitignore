@@ -2,6 +2,9 @@
 .DS_Store
 
 /.vagrant
+/.sass-cache
 /bower_components
 /node_modules
 /vendor
+/public/css
+/public/js
