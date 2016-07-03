@@ -1,5 +1,7 @@
-/vendor
 .env
-/.vagrant
 .DS_Store
+
+/.vagrant
 /bower_components
+/node_modules
+/vendor

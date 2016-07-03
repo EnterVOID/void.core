@@ -16,7 +16,7 @@ folders:
       to: "/home/vagrant/void-core"
 
 sites:
-    - map: void.local
+    - map: local.entervoid.com
       to: "/home/vagrant/void-core/public"
 
 databases:

@@ -1,0 +1,25 @@
+{
+  "name": "void.core",
+  "version": "1.0.0",
+  "description": "Run `vagrant up` to launch server, or `vagrant destroy --force` to stop it.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnterVOID/void.core.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnterVOID/void.core/issues"
+  },
+  "homepage": "https://github.com/EnterVOID/void.core#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}

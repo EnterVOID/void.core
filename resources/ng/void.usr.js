@@ -1,0 +1,4 @@
+angular
+  .module('voidUsers', [
+    'voidCore',
+  ]);
