@@ -8,4 +8,5 @@ function HomePageController($scope) {
   var vm = this;
   vm.greeting = "Hi!";
   $scope.title = "test!";
+  console.log($scope);
 }
