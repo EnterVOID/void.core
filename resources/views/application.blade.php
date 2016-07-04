@@ -1,12 +1,12 @@
-<html>
+<html ng-app="voidApp">
   <head>
     <title>Hi</title>
     <base href="/">
+    <link rel="stylesheet" type="text/css" href="/css/void.css">
   </head>
   <body>
-    <div class="container">
-      <h1>Hi</h1>
-      <div ng-view></div> <!-- Here will come your partial views -->
-    </div>
+    <div class="container" ui-view=""></div>
+    <script src="/js/vendor.js"></script>
+    <script src="/js/void.js"></script>
   </body>
 </html>

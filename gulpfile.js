@@ -1,17 +1,21 @@
 var gulp = require('gulp');
 var compass = require('gulp-compass');
-var minifyCSS = require('gulp-minify-css');
+var cleanCSS = require('gulp-clean-css');
+var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var pump = require('pump');
-var rename = require('gulp-rename');
 var mainBowerFiles = require('main-bower-files');
+var ngAnnotate = require('gulp-ng-annotate');
+var sourcemaps = require('gulp-sourcemaps');
+var bytediff = require('gulp-bytediff');
 
 var paths = {
   vendor: [
     'bower_components/angular/angular.js',
     'bower_components/moment/moment.js',
     'bower_components/moment-timezone/moment-timezone.js',
+    'bower_components/angular-moment/angular-moment.js',
     'bower_components/jquery/dist/jquery.js',
     'bower_components/ev-emitter/ev-emitter.js',
     'bower_components/imagesloaded/imagesloaded.pkgd.js',
@@ -31,7 +35,7 @@ var paths = {
     'resources/ng/**/*.html'
   ],
   style: [
-    'resources/scss/application.scss'
+    'resources/scss/void.scss'
   ],
   allStyles: [
     'resources/scss/**/*.scss'
@@ -40,46 +44,71 @@ var paths = {
 
 gulp.task('styles', function() {
   gulp.src(paths.style)
+    .pipe(sourcemaps.init())
     .pipe(compass({
       css:   './public/css',
       sass:  './resources/scss',
       image: './public/images'
     }))
-    .pipe(rename('void.css'))
-    .pipe(gulp.dest('public/css'))
-    .pipe(rename('void.min.css'))
-    .pipe(minifyCSS())
-    .pipe(gulp.dest('public/css'));
+    .on('error', function(error) {
+      // Would like to catch the error here
+      console.log(error);
+      this.emit('end');
+    })
+    .pipe(bytediff.start())
+    .pipe(cleanCSS())
+    .pipe(bytediff.stop())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./public/css'));
 });
 
+//minify vendor js
 gulp.task('bower-files', function(cb) {
   pump([
     gulp.src(mainBowerFiles('**/*.js'), { base: 'bower_components' }),
-      uglify(),
-      concat('vendor.js'),
+      concat('vendor.js', {newLine: ';'}),
+      bytediff.start(),
+      uglify({mangle: true}),
+      bytediff.stop(),
       gulp.dest('./public/js/')
     ],
     cb
   );
 });
 
+//minify vendor js
 gulp.task('vendor', function() {
   gulp.src(paths.vendor)
-    .pipe(uglify())
     .pipe(concat('vendor.min.js'))
+    .pipe(bytediff.start())
+    .pipe(uglify())
+    .pipe(bytediff.stop())
     .pipe(gulp.dest('./public/js'));
-});
-
-gulp.task('templates', function () {
-  gulp.src(paths.templates)
-  .pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('scripts', function() {
-  gulp.src(paths.javascript)
-    .pipe(uglify())
-    .pipe(concat('void.js'))
+  return gulp.src(paths.javascript)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+    .pipe(sourcemaps.init())
+    .pipe(concat('void.js', {newLine: ';'}))
+    // Annotate before uglify so the code get's min'd properly.
+    .pipe(ngAnnotate({
+        // true helps add where @ngInject is not used. It infers.
+        // Doesn't work with resolve, so we must be explicit there
+        add: true
+    }))
+    .pipe(bytediff.start())
+    .pipe(uglify({mangle: true}))
+    .pipe(bytediff.stop())
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./public/js'));
+});
+
+//move templates
+gulp.task('templates', function () {
+  gulp.src(paths.templates)
+  .pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('watch', function() {
@@ -88,4 +117,4 @@ gulp.task('watch', function() {
 	gulp.watch(paths.javascript, ['scripts']);
 });
 
-gulp.task('default', ['styles', 'bower-files', 'vendor', 'templates'], function(){});
+gulp.task('default', ['styles', 'scripts', 'bower-files', 'vendor', 'templates'], function(){});
