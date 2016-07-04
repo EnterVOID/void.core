@@ -9,4 +9,12 @@ angular
     'ngFileUpload',
     'hj.imagesLoaded',
     'angularMoment'
-  ]);
+  ]).config(launchTheme);
+
+launchTheme.$inject = ['$mdThemingProvider'];
+
+function launchTheme($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('grey')
+    .accentPalette('red');
+}
