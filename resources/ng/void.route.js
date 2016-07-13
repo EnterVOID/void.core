@@ -8,12 +8,24 @@ function config($stateProvider, $urlMatcherFactoryProvider, $locationProvider, $
   $locationProvider.html5Mode(true);
   $urlMatcherFactoryProvider.caseInsensitive(true);
   $urlMatcherFactoryProvider.strictMode(false);
-  $urlRouterProvider.otherwise("/state1");
+  $urlRouterProvider.otherwise("/404");
   $stateProvider
     .state('home_page', {
       url: "/",
       templateUrl: "js/home/show.html",
       controller: 'HomePageController',
       controllerAs: 'vm'
+    })
+    .state('single_character', {
+      url: "/{id:int}",
+      templateUrl: "js/characters/single.html",
+      controller: 'SingleCharacterController',
+      controllerAs: 'vm'
     });
+}
+
+getCharacter.$inject = ['Character'];
+function getCharacter(Character) {
+  console.log(id);
+  return Character.getSingleCharacter(id);
 }

@@ -9,11 +9,21 @@ angular
     'ngFileUpload',
     'hj.imagesLoaded',
     'angularMoment'
-  ]).config(launchTheme);
+  ]).config(launchSite);
 
-launchTheme.$inject = ['$mdThemingProvider'];
+launchSite.$inject = ['$mdThemingProvider', '$httpProvider'];
 
-function launchTheme($mdThemingProvider) {
+function launchSite($mdThemingProvider, $httpProvider) {
+  apiProviderSetup($httpProvider);
+  themeSetup($mdThemingProvider);
+}
+
+function apiProviderSetup($httpProvider) {
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+}
+
+function themeSetup($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('grey', {
       'default': '900',
