@@ -13,14 +13,8 @@ angular
 
 launchSite.$inject = ['$mdThemingProvider', '$httpProvider'];
 
-function launchSite($mdThemingProvider, $httpProvider) {
-  apiProviderSetup($httpProvider);
+function launchSite($mdThemingProvider) {
   themeSetup($mdThemingProvider);
-}
-
-function apiProviderSetup($httpProvider) {
-  $httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }
 
 function themeSetup($mdThemingProvider) {

@@ -14,11 +14,16 @@ function characterService($http) {
   ///////////
 
   function getSingleCharacter(id) {
-    return $http.get('http://api.entervoid.com/character/' + id)
-      .then(characterPulled);
+    return $http({
+      method: 'GET',
+      url: 'http://api.entervoid.com/characters/' + id
+    })
+    .success(characterPulled)
+    .error(function(err){
+      console.log(err);
+    });
 
     function characterPulled(response) {
-      console.log(response);
       return response;
     }
   }

@@ -23,9 +23,3 @@ function config($stateProvider, $urlMatcherFactoryProvider, $locationProvider, $
       controllerAs: 'vm'
     });
 }
-
-getCharacter.$inject = ['Character'];
-function getCharacter(Character) {
-  console.log(id);
-  return Character.getSingleCharacter(id);
-}
