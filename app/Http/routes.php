@@ -15,5 +15,9 @@
     return  'Hi';
 });*/
 
+$app->get('{any:.+}', 'AppController@application');
 $app->get('/', 'AppController@application');
-$app->get('{all}', 'AppController@application');
+
+/*$app->get('{any:.+}', function ()  {
+    return view('vue', []);
+});*/

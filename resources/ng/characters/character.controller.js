@@ -1,11 +1,11 @@
 angular.module('voidCharacters')
   .controller('SingleCharacterController', singleCharacterLaunch);
 
-singleCharacterLaunch.$inject = ['$stateParams','Character'];
+singleCharacterLaunch.$inject = ['$state', '$stateParams','Character'];
 
-function singleCharacterLaunch($stateParams, Character) {
+function singleCharacterLaunch($state, $stateParams, Character) {
   var vm = this;
-  
+
   activate();
 
   function activate() {
@@ -15,6 +15,7 @@ function singleCharacterLaunch($stateParams, Character) {
   function grabCharacter() {
     return Character.getSingleCharacter('429').then(function(response) {
       vm.character = response.data;
+      console.log('test' + $state);
       console.log(vm.character);
       console.log(vm.character.name);
       console.log(vm.character.gender);

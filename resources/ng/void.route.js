@@ -17,7 +17,7 @@ function config($stateProvider, $urlMatcherFactoryProvider, $locationProvider, $
       controllerAs: 'vm'
     })
     .state('single_character', {
-      url: "/{id:int}",
+      url: "/characters/{id:int}",
       templateUrl: "js/characters/single.html",
       controller: 'SingleCharacterController',
       controllerAs: 'vm'
