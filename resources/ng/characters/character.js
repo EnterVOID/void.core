@@ -18,8 +18,8 @@ function characterService($http) {
       method: 'GET',
       url: 'http://api.entervoid.com/characters/' + id
     })
-    .success(characterPulled)
-    .error(function(err){
+    .then(characterPulled)
+    .catch(function(err){
       console.log(err);
     });
 

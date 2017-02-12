@@ -4,8 +4,6 @@ var cleanCSS = require('gulp-clean-css');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var pump = require('pump');
-var mainBowerFiles = require('main-bower-files');
 var ngAnnotate = require('gulp-ng-annotate');
 var sourcemaps = require('gulp-sourcemaps');
 var bytediff = require('gulp-bytediff');
@@ -18,15 +16,19 @@ var paths = {
     'bower_components/angular-moment/angular-moment.js',
     'bower_components/jquery/dist/jquery.js',
     'bower_components/ev-emitter/ev-emitter.js',
+    'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
     'bower_components/imagesloaded/imagesloaded.pkgd.js',
     'bower_components/angular-images-loaded/angular-images-loaded.js',
     'bower_components/angular-ui-router/release/angular-ui-router.js',
     'bower_components/angular-resource/angular-resource.js',
     'bower_components/angular-animate/angular-animate.js',
+    'bower_components/angular-touch/angular-touch.js',
     'bower_components/angular-aria/angular-aria.js',
     'bower_components/angular-messages/angular-messages.js',
-    'bower_components/angular-material/angular-material.js',
     'bower_components/ng-file-upload/ng-file-upload-all.js',
+  ],
+  vendorCSS: [
+    'bower_components/bootstrap/dist/css/bootstrap.css'
   ],
   javascript: [
     'resources/ng/**/*.js'
@@ -62,24 +64,18 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./public/css'));
 });
 
-//minify vendor js
-gulp.task('bower-files', function(cb) {
-  pump([
-    gulp.src(mainBowerFiles('**/*.js'), { base: 'bower_components' }),
-      concat('vendor.js', {newLine: ';'}),
-      bytediff.start(),
-      uglify({mangle: true}),
-      bytediff.stop(),
-      gulp.dest('./public/js/')
-    ],
-    cb
-  );
+//minify vendor css
+gulp.task('vendor-styles', function() {
+  gulp.src(paths.vendorCSS)
+    .pipe(concat('vendor.css'))
+    .pipe(cleanCSS())
+    .pipe(gulp.dest('./public/css'));
 });
 
 //minify vendor js
 gulp.task('vendor', function() {
   gulp.src(paths.vendor)
-    .pipe(concat('vendor.min.js'))
+    .pipe(concat('vendor.js'))
     .pipe(bytediff.start())
     .pipe(uglify())
     .pipe(bytediff.stop())
@@ -115,6 +111,7 @@ gulp.task('watch', function() {
   gulp.watch(paths.templates, ['templates']);
   gulp.watch(paths.allStyles, ['styles']);
 	gulp.watch(paths.javascript, ['scripts']);
+  gulp.watch(paths.vendorCSS, ['vendor-styles']);
 });
 
-gulp.task('default', ['styles', 'scripts', 'bower-files', 'vendor', 'templates'], function(){});
+gulp.task('default', ['styles', 'scripts', 'vendor', 'vendor-styles', 'templates'], function(){});

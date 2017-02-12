@@ -1,4 +1,4 @@
 <h1>{{vm.character.name}}</h1>
 <h2>{{vm.character.created_at}}</h2>
-<p>{{vm.character.gender}} | {{vm.character.height}} | {{vm.character.weight}}</p>
+<p>{{vm.character.gender}} | {{vm.character.height}} | {{vm.character.weight ? vm.character.weight : 'N/A'}}</p>
 <p>{{vm.character.bio}}</p>
