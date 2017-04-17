@@ -1,22 +1,23 @@
-/*******************
-* Variables
-*******************/
-
-// colors
-//coming soon
-
-
-// font setting
-%font {
-  font-family: sans-serif;
+// Media Queries
+@mixin tablet-up {
+  @media screen and (min-width: $screen-sm-min) {
+    @content;
+  }
 }
 
+@mixin laptop-up {
+  @media screen and (min-width: $screen-md-min) {
+    @content;
+  }
+}
 
-// --------------------//
-//-- DEFINE MIXINS ----//
-//---------------------//
+@mixin desktop-up {
+  @media screen and (min-width: $screen-lg-min) {
+    @content;
+  }
+}
 
-//position
+// Positioning
 @mixin position($position, $args) {
   @each $o in top right bottom left {
     $i: index($args, $o);
@@ -42,7 +43,7 @@
 }
 
 
-// prefix
+// Web prefixes
 @mixin prefix($property, $value, $vendors: webkit moz ms o) {
   @if $vendors {
     @each $vendor in $vendors {
@@ -52,7 +53,7 @@
   #{$property}: #{$value};
 }
 
-//border radius
+// Border radius
 @mixin radius($value) {
   @include prefix(border-radius, $value, webkit moz ms o);
 }
@@ -79,33 +80,32 @@
   filter: alpha(opacity=$opacity-ie); //IE8
 }
 
-
-// generic transform
+// Generic transform
 @mixin transform($value...) {
   @include prefix(transform, $value, webkit moz ms o);
 }
 
-// rotate
+// Rotate
 @mixin rotate ($deg) {
   @include transform(rotate(#{$deg}deg));
 }
 
-// scale
+// Scale
 @mixin scale($scale) {
   @include transform(scale($scale));
 }
 
-// translate
+// Translate
 @mixin translate($x, $y) {
   @include transform(translate($x, $y));
 }
 
-// skew
+// Skew
 @mixin skew($x, $y) {
   @include transform(skew(#{$x}deg, #{$y}deg));
 }
 
-//transform origin
+// Transform origin
 @mixin transform-origin($origin) {
   -moz-transform-origin: $origin;
   -o-transform-origin: $origin;

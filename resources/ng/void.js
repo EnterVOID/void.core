@@ -7,6 +7,7 @@ angular
     'voidUsers',
     'voidCharacters',
     'voidComics',
+    'voidCommunity',
     'voidDashboard',
     'voidForum'
   ]);
