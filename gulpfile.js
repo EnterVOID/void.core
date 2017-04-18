@@ -114,4 +114,4 @@ gulp.task('watch', function() {
   gulp.watch(paths.vendorCSS, ['vendor-styles']);
 });
 
-gulp.task('build', ['styles', 'scripts', 'vendor', 'vendor-styles', 'templates'], function(){});
+gulp.task('default', ['styles', 'scripts', 'vendor', 'vendor-styles', 'templates'], function(){});
