@@ -1,21 +1,12 @@
-//setup
-@import 'global/definitions';
+/* This stylesheet uses Patternlab's atomic **
+** design system http://demo.patternlab.io/ */
 
-//test
-#topnav h1 {
-  width: 159px;
-  height: 26px;
-  a {
-    width: 159px;
-    height: 26px;
-    background-image: image-url('voidlogo.png');
-    background-size: 159px 26px;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    text-indent: -3000px;
+// ATOMS
+@import '00-atoms/global.colors';
+@import '00-atoms/global.breakpoints';
+@import '00-atoms/global.mixins';
+@import '00-atoms/global.fonts';
+@import '00-atoms/global.base';
 
-    &:hover, &:focus {
-      background-color: transparent;
-    }
-  }
-}
+// ORGANISMS
+@import '02-organisms/navbar';

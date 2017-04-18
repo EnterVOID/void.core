@@ -1,0 +1,19 @@
+$primary-font: 'Open Sans', sans-serif;
+
+@mixin font($size, $height: 1.5, $weight: medium) {
+  font-size: $size;
+  line-height: $height;
+
+  @if $weight == light {
+    font-weight: 300;
+  }
+  @else if $weight == medium {
+    font-weight: 500;
+  }
+  @else if $weight == heavy {
+    font-weight: 700;
+  }
+  @else {
+    font-weight: $weight;
+  }
+}
