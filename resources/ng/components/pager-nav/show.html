@@ -1,0 +1,14 @@
+<ul class="pager">
+  <li class="previous" ng-class="{'disabled': page.current == page.first}">
+    <a ng-href="{{link.first}}"><i class="fa fa-angle-double-left" aria-hidden="true"></i> First</a>
+  </li>
+  <li class="previous" ng-class="{'disabled': page.current == page.previous}">
+    <a ng-href="{{link.previous}}"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a>
+  </li>
+  <li class="next" ng-class="{'disabled': page.current == page.last}">
+    <a ng-href="{{link.last}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Last</a>
+  </li>
+  <li class="next" ng-class="{'disabled': page.current == page.next}">
+    <a ng-href="{{link.next}}"><i class="fa fa-angle-right" aria-hidden="true"></i> Next</a>
+  </li>
+</ul>

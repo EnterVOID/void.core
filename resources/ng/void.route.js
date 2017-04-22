@@ -32,7 +32,23 @@ function config($stateProvider, $urlMatcherFactoryProvider, $locationProvider, $
       controllerAs: 'vm'
     })
     .state('void.comics', {
+      abstract: true,
       url: '/comics',
+      defaultChild: 'void.comics.landing',
+      template: '<div ui-view=""></div>',
+    })
+    .state('void.comics.root', {
+      url: '',
+      redirectTo: 'void.comics.landing'
+    })
+    .state('void.comics.landing', {
+      url: '/',
+      templateUrl: 'js/comics/index.html',
+      controller: 'ComicsController',
+      controllerAs: 'vm'
+    })
+    .state('void.comics.results', {
+      url: '/results/{id:int}',
       templateUrl: 'js/comics/index.html',
       controller: 'ComicsController',
       controllerAs: 'vm'
