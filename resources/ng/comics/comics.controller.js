@@ -37,13 +37,6 @@ function comicsLaunch($state, $stateParams, Comic) {
         "previous": vm.matches.current_page > 1 ? vm.matches.current_page - 1 : 1,
         "next": vm.matches.current_page < vm.matches.last_page ? vm.matches.current_page + 1 : vm.matches.last_page,
         "last": vm.matches.last_page
-      },
-      "links": {
-        "first": "/comics/",
-        "previous": "/comics/results/" + vm.pager.pages.previous,
-        "next": "/comics/results/" + vm.pager.pages.next,
-        "last": "/comics/results/" + vm.pager.pages.last,
-        "fart": this
       }
     };
   }
