@@ -1,6 +1,6 @@
 <html ng-app="voidApp">
   <head>
-    <title>EnterVoid</title>
+    <title>EnterJPOP</title>
     <base href="/">
     <link rel="stylesheet" type="text/css" href="/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="/css/void.css">

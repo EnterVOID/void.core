@@ -16,7 +16,7 @@ function characterService($http) {
   function getSingleCharacter(id) {
     return $http({
       method: 'GET',
-      url: '//api.entervoid.com/characters/' + id
+      url: 'https//api.entervoid.com/characters/' + id
     })
     .then(characterPulled)
     .catch(function(err){
