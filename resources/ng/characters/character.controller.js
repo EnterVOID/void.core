@@ -16,9 +16,7 @@ function singleCharacterLaunch($state, $stateParams, Character) {
     return Character.getSingleCharacter('429').then(function(response) {
       vm.character = response.data;
       console.log('test' + $state);
-      console.log(vm.character);
-      console.log(vm.character.name);
-      console.log(vm.character.gender);
+      console.log($stateParams);
     });
   }
 }

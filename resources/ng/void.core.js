@@ -10,5 +10,6 @@ angular
     'ui.router',
     'ngFileUpload',
     'hj.imagesLoaded',
-    'angularMoment'
+    'angularMoment',
+    'timer'
   ]);
