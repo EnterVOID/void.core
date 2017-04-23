@@ -13,7 +13,5 @@ function pagerNavDirective() {
   };
 
   function link(scope, elem, attr) {
-    console.log(scope.page);
-    console.log(scope.link);
   }
 }

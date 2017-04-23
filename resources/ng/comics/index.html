@@ -1,14 +1,16 @@
 <h1>Comics</h1>
 
 <div class="row">
-  <section ng-repeat="match in vm.matches.data" class="col-md-4">
+  <section ng-repeat="match in vm.matches.data track by $index" class="col-md-4">
     <div class="panel panel-primary panel-void">
       <header class="panel-heading">
         <h3 class="panel-title">{{match.title ? match.title : 'Match'}}</h3>
       </header>
       <div class="panel-body">
         <ul>
-          <li><strong>Due:</strong> {{match.due_date}}</li>
+          <li><strong>Due:</strong>
+            <timer end-time="match.time_left" finish-callback="vm.endCountdown(match)">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
+          </li>
           <li><strong>Page Limit:</strong> {{match.page_limit}}</li>
         </ul>
       </div>

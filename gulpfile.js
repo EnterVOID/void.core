@@ -14,6 +14,8 @@ var paths = {
     'bower_components/moment/moment.js',
     'bower_components/moment-timezone/moment-timezone.js',
     'bower_components/angular-moment/angular-moment.js',
+    'bower_components/humanize-duration/humanize-duration.js',
+    'bower_components/angular-timer/dist/angular-timer.js',
     'bower_components/jquery/dist/jquery.js',
     'bower_components/ev-emitter/ev-emitter.js',
     'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
